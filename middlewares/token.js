@@ -57,7 +57,7 @@ module.exports = {
             })
         }
         else {
-            console.log("\n\n\tTOKEN NOT RECEIEVED",req.body);
+            console.log("\n\n\tTOKEN NOT RECEIVED",req.body);
             res.status(400).send(" TOKEN NOT RECEIVED !!! ")
         }
 
