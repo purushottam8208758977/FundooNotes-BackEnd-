@@ -1,0 +1,174 @@
+{
+    "registrationEmpty": {
+        "firstName": "",
+        "lastName": "",
+        "email": "",
+        "password": ""
+    },
+    "registrationNumberData": {
+        "firstName": "232",
+        "lastName": "",
+        "email": "",
+        "password": ""
+    },
+    "registrationInvalidEmail": {
+        "firstName": "rahul",
+        "lastName": "gandhi",
+        "email": "chotabhim",
+        "password": "iamstrong"
+    },
+    "registrationPasswordLength": {
+        "firstName": "amir",
+        "lastName": "khan",
+        "email": "amirkhan@gmail.com",
+        "password": "12"
+    },
+    "registrationMaxPassword": {
+        "firstName": "jay",
+        "lastName": "patanahi",
+        "email": "jaypagal@gmail.com",
+        "password": "12asdfghjkllkjhgfasdfghjklasdfghjkasxdcfvghjk"
+    },
+    "registrationValid": {
+        "firstName": "laxmi",
+        "lastName": "mittal",
+        "email": "laxmimittal@gmail.com",
+        "password": "laxmi1234"
+    },
+    "registrationDuplicateEmail": {
+        "firstName": "billy",
+        "lastName": "mrsgates",
+        "email": "billgates@gmail.com",
+        "password": "billy1234"
+    },
+    "loginEmpty": {
+        "email": "",
+        "password": ""
+    },
+    "loginInvalidEmail": {
+        "email": "iaminvalid",
+        "password": "runnnn"
+    },
+    "loginMinLength": {
+        "email": "billgates@gmail.com",
+        "password": "ru"
+    },
+    "loginMaxLength": {
+        "email": "billgates@gmail.com",
+        "password": "1234567878900asasddsffggfhgjhgdfgfgfgfdgdgfd"
+    },
+    "loginEmailAbsent": {
+        "email": "iamnotpresent@gmail.com",
+        "password": "youcannotfindme"
+    },
+    "loginIncorrectCredentials": {
+        "email": "vaishusawant143@gmail.com",
+        "password": "vaish1234"
+    },
+    "loginCorrectCredentials": {
+        "email": "vaishusawant143@gmail.com",
+        "password": "vaishnavi1234"
+    },
+    "forgetEmptyEmail": {
+        "email": ""
+    },
+    "forgetInvalidEmail": {
+        "email": "iamsososoinvalid"
+    },
+    "forgetValidAbsent": {
+        "email": "purussadsaissimple@gmail.com"
+    },
+    "forgetAllValid": {
+        "email": "puruissimple@gmail.com"
+    },
+    "resetEmpty": {
+        "password": ""
+    },
+    "headers": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDhmNTQ2OWRhMGNmMjVlZWIxYzljNzkiLCJpYXQiOjE1NzEzNzEwNTcsImV4cCI6MTU3MTQ1NzQ1N30.6QvowJXNjyp3SbEMv_pUKxCpRKwguUgDfMJfGPnDKs4"
+    },
+    "resetMinPassword": {
+        "password": "123"
+    },
+    "resetMaxPassword": {
+        "password": "1234567878900asasddsffggfhgjhgdfgfgfgfdgdgfdssssssddsfdsfdsdsfdsfdsfdsfdsfdsfdsfdsfdsfdsf"
+    },
+    "resetCorrect": {
+        "password": "purushottam1234"
+    },
+    "createNoteWOToken": {},
+    "createNoteIdeal": {
+        "title": "want"
+    },
+    "addLabelWOToken": {},
+    "addLabelWoNoteId": {
+        "noteId": ""
+    },
+    "addLabelSameName": {
+        "noteId": "5d9704cab0d806030ff88914",
+        "labelName": "google"
+    },
+    "addLabelOnlyNoteId": {
+        "noteId": "5d9704cab0d806030ff88914"
+    },
+    "addLabelNewLabel": {
+        "noteId": "5d9704cab0d806030ff88914",
+        "labelName": "WIN"
+    },
+    "addLabelExistingLabel": {
+        "noteId": "5d9704cab0d806030ff88914",
+        "labelId": "5d983fcc657d3e34fb817027"
+    },
+    "allNotesWOToken": {},
+    "invalidToken": {
+        "token": "eyJhaabGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDhmNTQ2OWRhMGNmMjVlZWIxYzljNzkiLCJpYXQiOjE1NzA2MjY0MzEsImV4cCI6MTU3MDcxMjgzMX0.EKTYsEseD4AM_DtEpbWNgnowGjsYzbczjL5skDOuz7g"
+    },
+    "deleteNoteWOToken": {},
+    "deleteNoteWoNoteId": {},
+    "deleteNoteInvalidNoteId": {
+        "noteId": "sdsdfsdsdf"
+    },
+    "deleteNoteValidNoteId": {
+        "noteId": "5d9740b9faa9e727c26595dd"
+    },
+    "updateNoteWOToken": {},
+    "updateNoteInvalidNoteId": {
+        "noteId": "sdadfgfd",
+        "updating": {
+            "title": "we"
+        }
+    },
+    "updateNoteInvalidField": {
+        "noteId": "5d9740b9faa9e727c26595dd"
+    },
+    "updateNoteValid": {
+        "noteId": "5d970543b0d806030ff88915",
+        "updating": {
+            "title": "naya naam"
+        }
+    },
+    "searchWOToken": {},
+    "searchEmpty": {},
+    "searchNoResult": {
+        "search": "asdfghjkk"
+    },
+    "searchValid": {
+        "search": "important"
+    },
+    "allLabelsWOToken": {},
+    "allLabelsValid": {},
+    "updateLabelWOToken": {},
+    "updateLabelEmptyLabel":{
+        "labelId":"5d983fcc657d3e34fb817027"
+    },
+    "updateLabelInvalidLabelId":{
+        "labelId":"dffdggjghn",
+        "labelName":"incubation Lab"
+    },
+    "updateLabelValid":{
+        "labelId":"5d9ebac44a48934b68ef823b",
+        "labelName":"incubation Lab"
+    },
+    "allRemindersWOToken": {},
+    "allRemindersValid":{}
+}

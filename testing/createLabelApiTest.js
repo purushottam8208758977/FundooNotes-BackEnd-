@@ -1,0 +1,52 @@
+/****************************************************************************************************
+* Execution : 1. default node cmd> mocha createLabelApiTest.js
+*
+* @Purpose  : To test the complete API of creating a label of a user
+* @file     : createLabelApiTest.js
+* @author   : Purushottam Khandebharad 
+* @since    : 9-08-2019
+****************************************************************************************************/
+const mongoose = require('mongoose')
+const chai = require('chai')
+const chaiHttp = require('chai-http')
+const server = require('../server')
+chai.should();
+const fs = require('fs')
+
+chai.use(chaiHttp)
+
+//filepath=path.join(`${_dirname}/sampleRequests.json`)
+let filepath = "/home/admin1/javascript/fundoNotes/backEnd/testing/sampleRequests.json"
+let requestedData = fs.readFileSync(filepath)
+requestedData = JSON.parse(requestedData)
+
+/**
+ * @description - All negative test cases are written !
+ */
+describe("Negative testing for updating a note ", () => {
+    /**
+     * @description - A request is sent without a token 
+     */
+    it("A request is sent without token expecting a 400 response ", (done) => {
+        chai.request(server)
+            .post('/createLabel')
+            .send(requestedData.createLabelWOToken)
+            .end((err, res) => {
+                res.should.have.status(400);
+                done();
+            })
+    })
+
+      /**
+     * @description - A request is sent with blank label name
+     */
+    it("A request is sent with blank label name... expecting a 422 response ", (done) => {
+        chai.request(server)
+            .post('/createLabel')
+            .send(requestedData.createLabel)
+            .end((err, res) => {
+                res.should.have.status(400);
+                done();
+            })
+    })
+})
