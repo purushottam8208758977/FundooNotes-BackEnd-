@@ -156,6 +156,7 @@ class UserService {
                                 let loginObject = {
                                     id: resultData[0]._id,
                                     firstName: resultData[0].firstName,
+                                    lastName:resultData[0].lastName,
                                     email: resultData[0].email,
                                     token: tokenGenerated.token,
                                     data: data

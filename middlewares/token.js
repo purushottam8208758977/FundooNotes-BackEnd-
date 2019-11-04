@@ -22,12 +22,12 @@ module.exports = {
 
     verifyToken(req, res, next) {
 
-         console.log('request', req.headers.token);
+         //console.log('request', req.headers.token);
         let token = req.headers.token;
         // console.log("\n\n\tToken in verify token method :", token);
 
         if (token) {
-            console.log("in verify")
+            console.log("in token verification ")
             //jwt.verify(token, process.env.UNIQUE_KEY, (err, data) => {
             jwt.verify(token, 'p$%#u$%43r@123u**/', (err, verifyData) => {
 
@@ -38,8 +38,8 @@ module.exports = {
                 else {
 
                     redisService.getCache(verifyData._id + 'afterLoginToken').then((data) => {
-                        console.log("\n\n\ttoken-->",token)
-                        console.log("\n\n\tdata-->",data)
+                        console.log("\n\n\tReceived token-->",token)
+                        console.log("\n\n\tToken from redis-->",data)
                         if (token === data) {
                             req.token = verifyData; //token added in the request process
                             console.log(`\n\n\tToken verified successfully !`);

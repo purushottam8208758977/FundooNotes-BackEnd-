@@ -61,16 +61,16 @@ class labelService {
             let query = { 'userId': allLabelsData.userId }
             let result = await labelModel.findLabel(query)
             if (result.length > 0) {
-                console.log(`\n\n\tAll notes loaded succesfully !`);
+                console.log(`\n\n\tAll labels loaded succesfully !`);
                 response.success = true
-                response.message = `ALL NOTES LOADED SUCCESSFULLY !`
+                response.message = `ALL LABELS LOADED SUCCESSFULLY !`
                 response.data = result
                 return response
             }
             else {
-                console.log(`\n\n\tNo notes found for id --> '${allLabelsData.userId}'`);
+                console.log(`\n\n\tNo labels found for user --> '${allLabelsData.userId}'`);
                 response.success = false
-                response.message = `NO NOTES FOUND FOR ID --> '${allLabelsData.userId}'`
+                response.message = `NO LABELS FOUND FOR USER --> '${allLabelsData.userId}'`
                 response.data = result
                 return response
             }

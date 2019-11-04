@@ -267,22 +267,23 @@ class noteModel {
 
                         let todaysDate = new Date();// current date 
                         // console.log(Date.parse(todaysDate))
-                        //  logger.info(`Date without parsing --->  ${todaysDate}\n\n`)
+                        //console.log("console time -->",todaysDate)
+                         // logger.info(`Date without parsing --->  ${todaysDate}\n\n`)
 
                         //parsing the date gives us a single number by which we can operate on it accordingly
                         todaysDate = Date.parse(todaysDate);
-                        //  logger.info(`Today's date after parsing --> ${todaysDate}\n\n`)
+                        //   logger.info(`Today's date after parsing --> ${todaysDate}\n\n`)
 
                         let reminder = result[i].reminder; // reminder picked up for comparison
-                        //logger.info(`Reminder for note '${result[i].title}' without parsing --> ${reminder}\n\n`)
+                        // logger.info(`Reminder for note '${result[i].title}' without parsing --> ${reminder}\n\n`)
 
                         reminder = Date.parse(reminder);
-                        //logger.info(`Reminder after parsing --> ${reminder}\n\n`);
+                        // logger.info(`Reminder after parsing --> ${reminder}\n\n`);
 
                         //logger.info(`reminder - todays Date ---> ${reminder-todaysDate}`)
                         // if ((reminder-todaysDate)<120000 && (reminder-todaysDate)>0 ) {
                         if (reminder == todaysDate) {
-                            logger.info(`Reminder for user '${result.userId}' --> Note --> ${result[i]}`)
+                            //logger.info(`Reminder for user '${result.userId}' --> Note --> ${result[i]}`)
                         }
                     }
                     else {

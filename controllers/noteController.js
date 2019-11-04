@@ -26,7 +26,8 @@ class noteController {
     async creatingNote(req, res) {
         try {
             //google keep doesnt create new notes with no titles or description
-            if ((req.body.title == null) && (req.body.description == null)) {
+            if ((req.body.title == "") && (req.body.description == "")) {
+                logger.info("Request made without title or description")
                 res.status(400).send({
                     "success": false,
                     "message": "EITHER ADD A TITLE OR DESCRIPTION TO CREATE A NEW NOTE !"
