@@ -167,7 +167,8 @@ class Note {
     async allNotesOfUser(userData) {
         try {
             // we need to display those notes which are not trashed and which are not archived 
-            let result = await notesModel.find({ 'userId': userData.userId, "trash": false, "archive": false }, {})
+            let result = await notesModel.find({ 'userId': userData.userId, "trash": false, "archive": false }, {}).populate("label")
+            console.log("\n\n\tResult of populating --->",result)
             if (result.length > 0) {// if those are found a array is returned
                 logger.info(`${result.length} notes found`);
                 return result
@@ -267,7 +268,6 @@ class Note {
                     if (result[i].reminder != "" || result[i].reminder != null) { // we want on the notes which have valid reminders
 
                         //logger.info(`Reminders found --->\n\n`)
-
                         let todaysDate = new Date();// current date 
                         // console.log(Date.parse(todaysDate))
                         //console.log("console time -->",todaysDate)

@@ -299,6 +299,7 @@ class Note {
 
                 // let notesResult = await noteModel.allNotesOfUser(userData, query) // all notes of that particular user are expected
                 let notesResult = await noteModel.allNotesOfUser(userData) // all notes of that particular user are expected
+                console.log("in services for notes ---->",notesResult)
                 if (notesResult) {
                     //setting the notes array in redis in order to get the redis data in if block itself , it saves time
                     logger.info(`NOTES LOADED FROM DATABASE -->`, notesResult)
@@ -361,7 +362,7 @@ class Note {
                     return { "success": true, "message": "ALL REMINDERS NOTES LOADED SUCCESFULLY !", "data": notesResult }
                 }
                 else {
-                    return { "success": false, "message": "REMINDERS NOT LOADED !", "data": notesResult }
+                    return { "success": false, "message": "NO NOTES HAVE REMINDERS", "data": notesResult }
                 }
             }
         } catch (error) {

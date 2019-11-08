@@ -15,7 +15,6 @@ class Label {
     async createLabel(req, res) {
         try {
             console.log(`\n\n\tRequest received in controller --> ${req.body.labelName}`);
-
             req.checkBody('labelName', 'Label name should not be empty').notEmpty()
             let errorsGenerated = req.validationErrors();
             if (errorsGenerated) {
