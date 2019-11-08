@@ -37,7 +37,7 @@ let label = mongoose.Schema({
 
 let labelModel = mongoose.model("labels", label)
 
-class labelsModel {
+class Label {
 
     async findLabel(query) {
         try {
@@ -111,6 +111,6 @@ class labelsModel {
 }
 
 
-let labelsModelInstance = new labelsModel()
+let labelInstance = new Label()
 
-module.exports = labelsModelInstance
+module.exports = labelInstance

@@ -1,5 +1,5 @@
 let jwt = require('jsonwebtoken');
-const redisService = require('../services/redisService')
+const redisService = require('../services/redis')
 require('dotenv').config()
 
 module.exports = {
@@ -21,7 +21,6 @@ module.exports = {
     },
 
     verifyToken(req, res, next) {
-
          //console.log('request', req.headers.token);
         let token = req.headers.token;
         // console.log("\n\n\tToken in verify token method :", token);
@@ -36,7 +35,6 @@ module.exports = {
                     res.status(400).send(err)
                 }
                 else {
-
                     redisService.getCache(verifyData._id + 'afterLoginToken').then((data) => {
                         console.log("\n\n\tReceived token-->",token)
                         console.log("\n\n\tToken from redis-->",data)

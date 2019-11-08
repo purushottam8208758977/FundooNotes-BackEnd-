@@ -13,18 +13,18 @@
 const express = require('express');
 const multer= require('../services/multer.js')
 const route = express.Router();
-const controllerUsed = require('../controllers/userController');
-const noteController = require('../controllers/noteController')
-const labelController = require ('../controllers/labelController')
+const userController = require('../controllers/user');
+const noteController = require('../controllers/note')
+const labelController = require ('../controllers/label')
 const tokenFile = require('../middlewares/token')
 
 /** USER CRUD */
-route.post('/registration', controllerUsed.registering);
-route.post('/emailVerification',tokenFile.verifyRegistrationToken,controllerUsed.verifyingEmail)
-route.post('/login',controllerUsed.loggingIn)
-route.post('/upload',tokenFile.verifyToken,multer.single('file'),controllerUsed.imageUploading)
-route.post('/forgetPassword',controllerUsed.forgettingPassword)
-route.post('/resetPassword',tokenFile.verifyRegistrationToken,controllerUsed.resettingPassword)
+route.post('/registration', userController.registering);
+route.post('/emailVerification',tokenFile.verifyRegistrationToken,userController.verifyingEmail)
+route.post('/login',userController.loggingIn)
+route.post('/upload',tokenFile.verifyToken,multer.single('file'),userController.imageUploading)
+route.post('/forgetPassword',userController.forgettingPassword)
+route.post('/resetPassword',tokenFile.verifyRegistrationToken,userController.resettingPassword)
 
 /** NOTES CRUD */
 route.post('/createNote',tokenFile.verifyToken,noteController.creatingNote)

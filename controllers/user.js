@@ -1,6 +1,6 @@
 
 
-let userService = require('../services/userService')
+let userService = require('../services/user')
 let s3 = require('../services/s3.js')
 const redis = require('redis')
 let client = redis.createClient()
@@ -19,7 +19,7 @@ require('dotenv').config()
  * 
  **************************************************************************/
 
-class userController {
+class User {
     registering(req, res) {
         console.log(`\n\n\tIn user controller, registering controller ..... ---> `);
         req.checkBody('firstName', 'first name should not be empty').notEmpty();
@@ -241,9 +241,9 @@ class userController {
     }
 }
 
-let exportedUserController = new userController()
+let userInstance = new User()
 
-module.exports = exportedUserController
+module.exports = userInstance
 
 
 

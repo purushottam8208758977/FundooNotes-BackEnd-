@@ -11,11 +11,11 @@
  * 
  **************************************************************************/
 
-let noteModel = require('../models/noteModel')
+let noteModel = require('../models/note')
 const logger = require('../logger')
-const redisDb = require('./redisService')
+const redisDb = require('./redis')
 
-class noteService {
+class Note {
 
     /**
      * @description - First gets the login token of that paticular user then flushes of all the cache in redis
@@ -52,7 +52,7 @@ class noteService {
                 let refreshResult = await this.refreshRedis(creatingData.userId)
                 if (refreshResult) {
                     logger.info(`Redis refreshed !`)
-                    return { "success": true, "message": "NOTE CREATED SUCCESFULLY (REDIS REFRESHED )!", "data": noteResult }
+                    return { "success": true, "message": "NOTE CREATED SUCCESFULLY !", "data": noteResult }
                 } else { // problem occured while refreshing redis
                     logger.info(`Redis not refreshed .`)
                     return { "success": true, "message": "NOTE CREATED SUCCESFULLY (NO DATA IN REDIS TO REFRESH )", "data": noteResult }
@@ -220,6 +220,7 @@ class noteService {
             //we got the result of searching in note schema now lets move to labels
             if (searchResultArray.length >= 0) {
                 //userQuery is necessary as we need to find the documents of that particular user only 
+                // two users can have labels of same name
                 let userQuery = { "userId": searchingData.userId }
                 //now the search is carried out in labels documents 
 
@@ -228,7 +229,7 @@ class noteService {
                     //to eliminate duplicate searches we need to carry out two for loops
                     for (let i = 0; i < labelSearchArray.length; i++) {
                         for (let j = 0; j < searchResultArray.length; j++) {
-                            if (labelSearchArray[i]._id.equals(searchResultArray[j]._id)) {
+                            if (labelSearchArray[i]._id.equals(searchResultArray[j]._id)) {//comparing note ids
                                 searchResultArray.splice(j, 1)
                             }
                         }
@@ -508,6 +509,6 @@ class noteService {
     }
 }
 
-let noteServiceInstance = new noteService()
+let noteInstance = new Note()
 
-module.exports = noteServiceInstance
+module.exports = noteInstance

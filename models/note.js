@@ -42,7 +42,8 @@ let note = mongoose.Schema({
     color: {
         type: String
     },
-    label: [{ type: mongoose.Schema.Types.ObjectId, ref: "labels", unique: true }]
+    label: [{ type: mongoose.Schema.Types.ObjectId, ref: "labels", unique: true }] // referring to labels collection
+                                                                    //no two labels can have same name
 },
     {
         timestamps: true
@@ -50,7 +51,7 @@ let note = mongoose.Schema({
 
 let notesModel = mongoose.model('notes', note)
 
-class noteModel {
+class Note {
     /**
      * @description - A new node is saved in database 
      * @param {*} noteData 
@@ -104,9 +105,11 @@ class noteModel {
     async updatingNote(query, updatingQuery) {
         try {
             let result = await notesModel.findOneAndUpdate(query, updatingQuery)
+            // 
             if (result) {
                 return result
             }
+
         } catch (error) {
             logger.error("Error in update note model", error);
             return error
@@ -301,9 +304,9 @@ class noteModel {
 
 
 }
-let noteModelInstance = new noteModel()
+let noteInstance = new Note()
 cron.schedule('* * * * * * ', () => { // this scheduler will execute every second 
-    noteModelInstance.notificationSetup()
+    noteInstance.notificationSetup()
 })
-module.exports = noteModelInstance
+module.exports = noteInstance
 

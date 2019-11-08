@@ -11,11 +11,11 @@
  * 
  **************************************************************************/
 
-let userModel = require('../models/userModel.js')
+let userModel = require('../models/user.js')
 const bycrypt = require('bcrypt')
 const generateMail = require('../middlewares/nodeMailer')
 const generateToken = require('../middlewares/token')
-const redisService = require('../services/redisService')
+const redisService = require('./redis')
 /**
  * @description - It hashes(encrypts) the password entered by the user .
  * @param {@} password 
@@ -33,7 +33,7 @@ hash = (password) => {
     })
 }
 
-class UserService {
+class User {
     /**
      * @description - Using promises registering service is carried out 
      * @param {*} registeringData 
@@ -319,6 +319,6 @@ class UserService {
 }
 
 
-let userService = new UserService()
+let userInstance = new User()
 
-module.exports = userService 
+module.exports = userInstance 

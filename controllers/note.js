@@ -9,15 +9,15 @@
  * @since           : 7-08-2019
  * 
  **************************************************************************/
-let noteService = require('../services/noteService')
-let labelService = require('../services/labelService')
+let noteService = require('../services/note')
+let labelService = require('../services/label')
 const logger = require('../logger')
 const cron = require('node-cron')
+
 /**
  * @description - Handles all the CRUD operations done on the notes .
  */
-class noteController {
-
+class Note {
     /**
      * @description - A new note is created based on the data received form the request .
      * @param {*} req // request received
@@ -437,6 +437,6 @@ class noteController {
 
 }
 
-let noteControllerInstance = new noteController()
+let noteIntance = new Note()
 
-module.exports = noteControllerInstance
+module.exports = noteIntance

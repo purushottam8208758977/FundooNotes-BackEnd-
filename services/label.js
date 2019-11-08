@@ -11,9 +11,9 @@
  * 
  **************************************************************************/
 
-let labelModel = require('../models/labelModel')
+let labelModel = require('../models/label')
 
-class labelService {
+class Label {
 
     async createLabel(labelData) {
         try {
@@ -145,6 +145,6 @@ class labelService {
     }
 }
 
-let labelServiceInstance = new labelService()
+let labelInstance = new Label()
 
-module.exports = labelServiceInstance
+module.exports = labelInstance

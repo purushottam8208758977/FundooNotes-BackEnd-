@@ -47,29 +47,33 @@ let user = mongoose.Schema({ //schema is a class in mongoose library
 /**
  * @description - Using a schema named 'user' and collection named 'modelSchema' a new model is made .
  */
-let userDataModel = mongoose.model('user', user) //creating a new model
+let userModel = mongoose.model('user', user) //creating a new model
 //modelSchema is the collection's name 
 
-class UserModel {
+class User {
     findUser(registeringData) {
         return new Promise((resolve, reject) => {
 
-            let userPromise = userDataModel.find({ 'email': registeringData.email })
+            let userPromise = userModel.find({ 'email': registeringData.email })
             userPromise.then((data) => {
                 if (data.length > 0) {
-                    let emailActivatedPromise = userDataModel.find({ '_id': data[0]._id, "emailVerification": true })
+                    let emailActivatedPromise = userModel.find({ '_id': data[0]._id, "emailVerification": true })
                     emailActivatedPromise.then((isActivated) => {
                         if (isActivated.length > 0) {
                             resolve(isActivated);
+                            console.log("\n\ntryyyyyy---->")
                         }
                         else {//empty object 
                             let activated = false
                             resolve(activated);
+                            console.log("\n\ntryyyyyy---->")
                         }
                     })
                 }
                 else { // user not found
-                    resolve(data)
+                    return resolve(data)
+                    
+                    console.log("\n\ntryyyyyy---->")
                 }
             })
                 .catch((err) => {
@@ -80,7 +84,7 @@ class UserModel {
     }
 
     registerUser(newUserObject) {
-        let newUser = new userDataModel(newUserObject)
+        let newUser = new userModel(newUserObject)
         return new Promise((resolve, reject) => {
             let savePromise = newUser.save()
             savePromise.then((data) => {
@@ -95,7 +99,7 @@ class UserModel {
     async verifyingEmail(verificationData) {
         try {
             console.log(`\n\n\tIn user model to update the email verification field with id --->  ${verificationData}`);
-            let updateResult = await userDataModel.findOneAndUpdate({ '_id': verificationData }, { $set: { 'emailVerification': true } })
+            let updateResult = await userModel.findOneAndUpdate({ '_id': verificationData }, { $set: { 'emailVerification': true } })
             if (updateResult) {
                 console.log("\n\ACCOUNT ACTIVATED SUCCESSFULLY !");
                 return true
@@ -111,7 +115,7 @@ class UserModel {
 
     async resetPassword(resetPasswordData, hashedPassword) {
         try {
-            let updateResult = await userDataModel.findOneAndUpdate({ '_id': resetPasswordData._id }, { $set: { 'password': hashedPassword } })
+            let updateResult = await userModel.findOneAndUpdate({ '_id': resetPasswordData._id }, { $set: { 'password': hashedPassword } })
             if (updateResult) {
                 console.log("\n\nPassword updated successfully !");
                 return true
@@ -134,7 +138,7 @@ class UserModel {
      */
     async savingImage(id, url) {
         try {
-            let result = await userDataModel.findOneAndUpdate({ '_id': id }, { $set: { 'url': url } })
+            let result = await userModel.findOneAndUpdate({ '_id': id }, { $set: { 'url': url } })
             if (result) {
                 console.log("\n\n\tIMAGE UPLOADED SUCCESSFULLY !");
                 return true
@@ -149,6 +153,6 @@ class UserModel {
     }
 }
 
-let userModel = new UserModel()
+let userInstance = new User()
 
-module.exports = userModel
+module.exports = userInstance

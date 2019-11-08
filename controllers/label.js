@@ -9,10 +9,9 @@
  * @since           : 7-08-2019
  * 
  **************************************************************************/
-let labelService = require('../services/labelService')
+let labelService = require('../services/label')
 
-class labelController {
-
+class Label {
     async createLabel(req, res) {
         try {
             console.log(`\n\n\tRequest received in controller --> ${req.body.labelName}`);
@@ -124,6 +123,6 @@ class labelController {
     }
 }
 
-let labelControllerInstance = new labelController()
+let labelInstance = new Label()
 
-module.exports = labelControllerInstance 
+module.exports = labelInstance 
