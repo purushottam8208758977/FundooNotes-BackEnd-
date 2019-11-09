@@ -20,6 +20,7 @@ var upload = multer({
     storage: multerS3({
         s3: s3,
         bucket: process.env.BUCKET,
+        //acl: 'public-read',
         key: (req, file, callback) => {
             
             // console.log("\n\n\tFile received in config --> multer ", file);

@@ -17,7 +17,6 @@ class Label {
 
     async createLabel(labelData) {
         try {
-
             let response = {}
             let query = { 'userId': labelData.userId, 'labelName': labelData.labelName }
             let result = await labelModel.findLabel(query)
