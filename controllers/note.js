@@ -160,7 +160,7 @@ class Note {
             let response = {}
             if (errorsGenerated) {
                 response.success = false;
-                response.message = "Erros are generated in the request ! ";
+                response.message = "Errors are generated in the request ! ";
                 response.error = errorsGenerated;
                 return res.status(422).send(response);  //The 422 (Unprocessable Entity)
             }
@@ -285,6 +285,7 @@ class Note {
     */
     async searchingNotes(req, res) {
         try {
+            console.log("request--->",req.body.search)
             req.body.userId = req.token._id
             //what is to be searched has to be mentioned , you cant leave it empty
             req.checkBody('search', 'SEARCH FIELD SHOULD NOT BE EMPTY').notEmpty()
