@@ -223,21 +223,24 @@ class User {
         }
     }
 
-    async imageUploading(req, res) {
+    async imageUploading(req) {
         try {
-            const s3url = await s3.getSignedUrl('getObject', { Bucket: process.env.BUCKET, Key: req.file.originalname });
+            //const s3url = await s3.getSignedUrl('getObject', { Bucket: process.env.BUCKET, Key: req.file.originalname });
             
-            console.log(`\n\n\tUrl of ${req.file.originalname} image--> `, s3url);
-            let result = await userService.uploadingService(req.token._id, s3url)
+            // console.log(`\n\n\tUrl of ${req.file.originalname} image--> `, s3url);
+            let result = await userService.uploadingService(req._id, req.s3url)
             if (result.success) {
-                res.status(200).send(result)
+                // res.status(200).send(result)
+                return result
             }
             else {
-                res.status(400).send(result)
+                // res.status(400).send(result)
+                return result
             }
         } catch (error) {
             console.log(error);
-            res.status(400).send(error)
+            return erorr
+            // res.status(400).send(error)
         }
     }
 }

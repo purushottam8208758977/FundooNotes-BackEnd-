@@ -158,6 +158,7 @@ class User {
                                     firstName: resultData[0].firstName,
                                     lastName:resultData[0].lastName,
                                     email: resultData[0].email,
+                                    url:resultData[0].url,
                                     token: tokenGenerated.token,
                                     data: data
                                 }
