@@ -149,7 +149,7 @@ class Note {
                 path: 'label', // path signifies which field in this schema to search
                 match: { labelName: { $regex: enteredValue } } // labelName is the name of the field in label collection
             }).exec(function (err, allDocuments) {
-                logger.info("All documents ", allDocuments);
+                console.log("All documents ", allDocuments);
                 let matchedDocuments = allDocuments.filter(function (singleDocument) {
                     if (singleDocument.label.length > 0)
                         return singleDocument;

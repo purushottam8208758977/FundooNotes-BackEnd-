@@ -417,7 +417,7 @@ class Note {
             */
             let noteObject = {// User id is extracted from the request 
                 "userId": req.token._id,
-                "labelName": req.body.labelName,
+                "labelName": req.query.labelName,
                 "pageNo": req.query.pageNo,
                 "size": req.query.size
             }
