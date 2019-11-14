@@ -34,7 +34,7 @@ route.post('/upload', tokenFile.verifyToken, (req, res) => {
         } else {
             // console.log("req: ", req);
             console.log("data: ", data);
-            console.log("file: ", req.file.location);
+           // console.log("file: ", req.file.location);
             request.s3url=req.file.location
             let result = await userController.imageUploading(request)
             if (result.success) {
