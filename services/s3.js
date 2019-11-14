@@ -14,7 +14,7 @@ const AWS = require('aws-sdk');
 require('dotenv').config()
 
 const s3Client = new AWS.S3({
-   signatureVersion: 'v4',                     // this enables the image to download
+   //signatureVersion: 'v4',                     // this enables the image to download
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 

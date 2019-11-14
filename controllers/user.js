@@ -226,6 +226,7 @@ class User {
     async imageUploading(req, res) {
         try {
             const s3url = await s3.getSignedUrl('getObject', { Bucket: process.env.BUCKET, Key: req.file.originalname });
+            
             console.log(`\n\n\tUrl of ${req.file.originalname} image--> `, s3url);
             let result = await userService.uploadingService(req.token._id, s3url)
             if (result.success) {
