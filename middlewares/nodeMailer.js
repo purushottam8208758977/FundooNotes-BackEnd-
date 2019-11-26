@@ -23,7 +23,7 @@ module.exports = {
                 from: process.env.USEREMAIL,
                 to: requestEmail,
                 subject: "Forget password : Fundoo Notes",
-                text: urlReceived
+                html: urlReceived
             }
 
             let data=await transporter.sendMail(mailoptions)

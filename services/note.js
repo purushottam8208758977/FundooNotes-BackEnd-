@@ -173,10 +173,11 @@ class Note {
             let updatingQuery = { $set: updatingData.updating }
             //both queries passed on to the model to find and update that note .
             let result = await noteModel.updatingNote(query, updatingQuery)
+            console.log("\n\n\tResult of updating ------2222---->",result)
             if (result._id) { // if successfull updation is carried out then the result contains a id
                 var keys = Object.keys(updatingData.updating);
                 let refreshResult = await this.refreshRedis(updatingData.userId)
-                if (refreshResult) {
+                if (refreshResult>=0) {
                     logger.info(`Redis refreshed !`)
                     logger.info(` '${keys[0]}' of note '${updatingData.noteId}' updated succesfully !`);
                     return { "success": true, "message": ` '${keys[0]}' of note '${updatingData.noteId}' updated succesfully ! (redis refreshed)`, "data": result }

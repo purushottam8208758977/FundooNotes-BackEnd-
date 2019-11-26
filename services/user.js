@@ -16,6 +16,8 @@ const bycrypt = require('bcrypt')
 const generateMail = require('../middlewares/nodeMailer')
 const generateToken = require('../middlewares/token')
 const redisService = require('./redis')
+const ejs = require('ejs')
+const path = require('path')
 /**
  * @description - It hashes(encrypts) the password entered by the user .
  * @param {@} password 
@@ -77,24 +79,35 @@ class User {
                                 console.log("\n\ntoken object :" + tokenObject.token);
 
                                 let url = "http://localhost:3000/emailVerification/" + tokenObject.token
-                                let mailPromise = generateMail.nodeMailer(registeringData.email, url)
-                                    .then((mailResult) => {
-                                        console.log(`result of mailing service ...........`, mailResult.responseCode);
-                                        if (mailResult.responseCode != 535 && mailResult.port != 587) {
-                                            console.log(`\n\n\tREGISTRATION SUCCESSFULL ! VERIFICATION LINK SENT TO EMAIL ID !`);
-                                            response.success = true;
-                                            response.message = "REGISTRATION SUCCESSFULL ! VERIFICATION LINK SENT TO EMAIL ID !"
-                                            response.data = data;
-                                            resolve(response);
-                                        }
-                                        else { // either 535 (incorrect credentials) occurred or 587(wrongly mentioned email service) occurred 
-                                            console.log(`\n\n\tError occure while sending mail ---> nodemailer failed !`);
-                                            response.success = false;
-                                            response.message = "Error occured in mailing service !"
-                                            response.data = data;
-                                            resolve(response);
-                                        }
+
+                                let template = ejs.renderFile(path.join(__dirname, '../view/template.ejs'), { name: registeringData.email, url: url })
+
+
+                                    .then((templateResponse) => {
+                                        let mailPromise = generateMail.nodeMailer(registeringData.email, templateResponse)
+                                            .then((mailResult) => {
+                                                console.log(`result of mailing service ...........`, mailResult.responseCode);
+                                                if (mailResult.responseCode != 535 && mailResult.port != 587) {
+                                                    console.log(`\n\n\tREGISTRATION SUCCESSFULL ! VERIFICATION LINK SENT TO EMAIL ID !`);
+                                                    response.success = true;
+                                                    response.message = "REGISTRATION SUCCESSFULL ! VERIFICATION LINK SENT TO EMAIL ID !"
+                                                    response.data = data;
+                                                    resolve(response);
+                                                }
+                                                else { // either 535 (incorrect credentials) occurred or 587(wrongly mentioned email service) occurred 
+                                                    console.log(`\n\n\tError occure while sending mail ---> nodemailer failed !`);
+                                                    response.success = false;
+                                                    response.message = "Error occured in mailing service !"
+                                                    response.data = data;
+                                                    resolve(response);
+                                                }
+                                            })
                                     })
+
+
+                                console.log("\n\n\tTemplate ---->", template)
+
+
                             })
                                 .catch((err) => {
                                     console.log(`\n\nError occured while saving the user in database ...${err}`);
@@ -156,9 +169,9 @@ class User {
                                 let loginObject = {
                                     id: resultData[0]._id,
                                     firstName: resultData[0].firstName,
-                                    lastName:resultData[0].lastName,
+                                    lastName: resultData[0].lastName,
                                     email: resultData[0].email,
-                                    url:resultData[0].url,
+                                    url: resultData[0].url,
                                     token: tokenGenerated.token,
                                     data: data
                                 }
