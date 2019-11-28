@@ -1,9 +1,9 @@
 /*************************************************************************
- * Execution        : 1. default node       cmd> nodemon noteController.js
+ * Execution        : 1. default node       cmd> nodemon label.js
  * 
  * Purpose          : Request from the route is received and sent forward to service .
  *                    Also separate fields are retrieved from the request body. 
- * @file            : noteController.js
+ * @file            : label.js
  * @author          : Purushottam
  * @version         : 1.0
  * @since           : 7-08-2019
@@ -94,22 +94,16 @@ class Label {
         try {
             req.body.userId = req.token._id
             req.checkBody('labelId', 'Label id should not be empty').notEmpty()
-
             let errorsGenerated = req.validationErrors();
-
             let response = {}
-
             if (errorsGenerated) {
                 response.success = false;
-                response.message = "Erros are generated in the request ! ";
+                response.message = "Errors are generated in the request ! ";
                 response.error = errorsGenerated;
-
                 return res.status(422).send(response);  //The 422 (Unprocessable Entity)
-
             }
             else {
                 let result = await labelService.deletingLabel(req.body)
-
                 if (result) {
                     res.status(200).send(result)
                 }
@@ -117,7 +111,6 @@ class Label {
         } catch (error) {
             console.log(error);
             res.status(400).send(error)
-            
         }
     }
 }

@@ -80,8 +80,7 @@ class User {
 
                                 let url = "http://localhost:3000/emailVerification/" + tokenObject.token
 
-                                let template = ejs.renderFile(path.join(__dirname, '../view/template.ejs'), { name: registeringData.email, url: url })
-
+                                let template = ejs.renderFile(path.join(__dirname, '../view/template.ejs'), { name: registeringData.firstName, url: url })
 
                                     .then((templateResponse) => {
                                         let mailPromise = generateMail.nodeMailer(registeringData.email, templateResponse)

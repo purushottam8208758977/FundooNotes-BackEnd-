@@ -304,6 +304,9 @@ class Note {
 
 
 }
+/**
+ * @todo - Have to move to worker's directory in root .
+ */
 let noteInstance = new Note()
 cron.schedule('* * * * * * ', () => { // this scheduler will execute every second 
     noteInstance.notificationSetup()

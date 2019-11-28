@@ -1,9 +1,9 @@
 /*************************************************************************
- * Execution        : 1. default node       cmd> nodemon noteController.js
+ * Execution        : 1. default node       cmd> nodemon note.js
  * 
  * Purpose          : Request from the route is received and sent forward to service .
  *                    Also separate fields are retrieved from the request body. 
- * @file            : noteController.js
+ * @file            : note.js
  * @author          : Purushottam
  * @version         : 1.0
  * @since           : 7-08-2019
@@ -12,7 +12,6 @@
 let noteService = require('../services/note')
 let labelService = require('../services/label')
 const logger = require('../logger')
-const cron = require('node-cron')
 
 /**
  * @description - Handles all the CRUD operations done on the notes .
@@ -25,7 +24,8 @@ class Note {
      */
     async creatingNote(req, res) {
         try {
-            //google keep doesnt create new notes with no titles or description
+            /**google keep creates new notes with no titles or description but in this particular project 
+             either title or description is mandatory*/
             if ((req.body.title == "") && (req.body.description == "")) {
                 logger.info("Request made without title or description")
                 res.status(400).send({
@@ -194,7 +194,7 @@ class Note {
                 "pageNo": req.query.pageNo,
                 "size": req.query.size
             }
-            //now user id is passes on to receive all the notes 
+            //now user id is passed on to receive all the notes 
             let result = await noteService.allNotesOfUser(noteObject)
             if (result.success) {
                 logger.info(`\n\n\tNOTES LOADED SUCCESFULLY !`);
@@ -285,7 +285,7 @@ class Note {
     */
     async searchingNotes(req, res) {
         try {
-            console.log("request--->",req.body.search)
+            console.log("request--->", req.body.search)
             req.body.userId = req.token._id
             //what is to be searched has to be mentioned , you cant leave it empty
             req.checkBody('search', 'SEARCH FIELD SHOULD NOT BE EMPTY').notEmpty()
@@ -343,11 +343,11 @@ class Note {
         }
     }
 
-     /**
-     * @description - All notes which are archived will be extracted and shown .
-     * @param {*} req 
-     * @param {*} res 
-     */
+    /**
+    * @description - All notes which are archived will be extracted and shown .
+    * @param {*} req 
+    * @param {*} res 
+    */
     async allArchivesOfUsers(req, res) {
         try {
             /**

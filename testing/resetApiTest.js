@@ -17,7 +17,7 @@ const fs = require('fs')
 chai.use(chaiHttp)
 
 //filepath=path.join(`${_dirname}/sampleRequests.json`)
-let filepath = "/home/admin1/javascript/fundoNotes/backEnd/testing/sampleRequests.json"
+let filepath = "/home/userq/purushottam/FundooNotes-BackEnd--master/testing/sampleRequests.json"
 let requestedData = fs.readFileSync(filepath)
 requestedData = JSON.parse(requestedData)
 

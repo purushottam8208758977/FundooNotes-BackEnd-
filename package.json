@@ -6,11 +6,11 @@
   "dependencies": {
     "arraylist": "^0.1.0",
     "aws-sdk": "^2.539.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-    "commander": "^3.0.1",
+    "commander": "^3.0.2",
     "cors": "^2.8.5",
     "cron": "^1.7.2",
     "date-and-time": "^0.9.0",
@@ -26,6 +26,9 @@
     "multer-s3": "^2.9.0",
     "node-cron": "^2.0.3",
     "nodemailer": "^6.3.0",
+    "nodemon": "^2.0.1",
+    "npm": "^6.13.1",
+    "nyc": "^14.1.1",
     "random": "^2.1.1",
     "readline-sync": "^1.4.10",
     "redis": "^2.8.0",
@@ -43,10 +46,12 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-standard": "^4.0.1",
     "sonarqube-scanner": "^2.5.0",
-    "standard": "^14.0.2"
+    "standard": "^14.0.2",
+    "mocha": "^6.2.2"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --timeout 20000 ./testing/",
+    "coverage": "nyc -r cobertura -r text-summary -r lcov npm test"
   },
   "repository": {
     "type": "git",
@@ -58,5 +63,5 @@
     "url": "https://github.com/purushottam8208758977/MERN-STACK/issues"
   },
   "homepage": "https://github.com/purushottam8208758977/MERN-STACK#readme",
-  "description": ""
+  "description": "fundoo"
 }

@@ -11,7 +11,6 @@
  **************************************************************************/
 
 const express = require('express');
-const multer = require('../services/multer.js')
 const route = express.Router();
 const userController = require('../controllers/user');
 const noteController = require('../controllers/note')
@@ -23,7 +22,7 @@ const singleUpload = upload.single('file')
 route.post('/registration', userController.registering);
 route.post('/emailVerification', tokenFile.verifyRegistrationToken, userController.verifyingEmail)
 route.post('/login', userController.loggingIn)
-// route.post('/upload',tokenFile.verifyToken,multer.single('file'),userController.imageUploading)
+
 route.post('/upload', tokenFile.verifyToken, (req, res) => {
     let request={} 
     request._id = req.token._id

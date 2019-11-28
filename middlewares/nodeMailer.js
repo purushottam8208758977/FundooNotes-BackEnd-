@@ -22,7 +22,7 @@ module.exports = {
             let mailoptions = {
                 from: process.env.USEREMAIL,
                 to: requestEmail,
-                subject: "Forget password : Fundoo Notes",
+                subject: "Fundoo Notes Assistance !",
                 html: urlReceived
             }
 
